@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovators Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            background-color: #121212;
+            overflow-x: hidden;
+        }
+        .hero {
+            background: url('https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h1 {
+            font-size: 4em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 2s ease-in-out, bounce 1s infinite;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite linear;
+        }
+        .box1 {
+            transform: translateX(-150px) translateY(-150px) translateZ(150px);
+        }
+        .box2 {
+            transform: translateX(150px) translateY(-150px) translateZ(150px);
+        }
+        .box3 {
+            transform: translateX(-150px) translateY(150px) translateZ(150px);
+        }
+        .box4 {
+            transform: translateX(150px) translateY(150px) translateZ(150px);
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #1e1e1e;
+            border-bottom: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+        .section:nth-child(even) {
+            background-color: #252525;
+        }
+        .section:hover {
+            background-color: #333;
+        }
+        .signup {
+            margin: 20px 0;
+        }
+        .signup input[type="email"] {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 5px;
+            color:#2e4ac8;
+            background-color: #fffdfd0f;
+            border-width: 2px;
+            border-color: #2e4ac8;
+        }
+        .signup button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff18;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .signup button:hover {
+            background-color: #2e4ac8;
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        .section img:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: #6b6b6b42;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .grid-item {
+            flex: 1 1 300px;
+            margin: 10px;
+        }
+        /* Bubble Animation */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: bubble 5s infinite;
+            pointer-events: none;
+        }
+        @keyframes bubble {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+        /* Add multiple bubbles */
+        .bubble:nth-child(1) { left: 10%; width: 50px; height: 50px; animation-duration: 6s; }
+        .bubble:nth-child(2) { left: 30%; width: 70px; height: 70px; animation-duration: 5s; }
+        .bubble:nth-child(3) { left: 50%; width: 40px; height: 40px; animation-duration: 7s; }
+        .bubble:nth-child(4) { left: 70%; width: 60px; height: 60px; animation-duration: 4s; }
+        .bubble:nth-child(5) { left: 90%; width: 80px; height: 80px; animation-duration: 6.5s; }
+
+        /* Icon Animation */
+        .icon {
+            font-size: 50px;
+            margin: 20px;
+            transition: transform 0.3s;
+        }
+        .icon:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Join the Innovators Community</h1>        
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="section" style="background-image: url(https://images.pexels.com/photos/2882509/pexels-photo-2882509.jpeg?auto=compress&cs=tinysrgb&w=600);">
+        <h2>About Us</h2>
+        <p>We are a community of developers and innovators dedicated to sharing knowledge and building the future.</p>
+        <div class="grid">
+            <div class="grid-item card">
+                <h3>Our Mission</h3>
+                <p>To empower developers through collaboration and innovation.</p>
+                <i class="fas fa-rocket icon"></i>
+            </div>
+            <div class="grid-item card">
+                <h3>Our Vision</h3>
+                <p>Creating a world where technology serves humanity.</p>
+                <i class="fas fa-globe icon"></i>
+            </div>
+            <div class="grid-item card">
+                <h3>Our Values</h3>
+                <p>Integrity, Collaboration, and Innovation.</p>
+                <i class="fas fa-lightbulb icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="background-image: url(https://images.pexels.com/photos/3183186/pexels-photo-3183186.jpeg?auto=compress&cs=tinysrgb&w=600);">
+        <h2>Our Projects</h2>
+        <p>Explore our innovative projects and contribute to open-source initiatives.</p>
+        <div class="grid">
+            <div class="grid-item card">
+                <h3>Project A</h3>
+                <p>A groundbreaking project that changes the way we think about technology.</p>
+                <i class="fas fa-tools icon"></i>
+            </div>
+            <div class="grid-item card">
+                <h3>Project B</h3>
+                <p>An innovative solution for modern challenges.</p>
+                <i class="fas fa-chart-line icon"></i>
+            </div>
+            <div class="grid-item card">
+                <h3>Project C</h3>
+                <p>A collaborative effort to build a better future.</p>
+                <i class="fas fa-handshake icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="background-image: url(https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=600);">
+        <h2>Sign Up for Updates</h2>
+        <p>Stay updated with the latest news and projects from our community.</p>
+        <div class="signup">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Sign Up</button>
+        </div>
+    </div>
+
+    <div class="section" style="background-image: url(https://images.pexels.com/photos/15387699/pexels-photo-15387699/free-photo-of-blank-card-with-envelope.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2;)" >
+        <h2>Contact Us</h2>
+        <p>Have questions? Reach out to us and let's collaborate!</p>
+        <div class="grid">
+            <div class="grid-item card">
+                <h3>Email</h3>
+                <p>info@innovatorscommunity.com</p>
+                <i class="fas fa-envelope icon"></i>
+            </div>
+            <div class="grid-item card">
+                <h3>Phone</h3>
+                <p>(123) 456-7890</p>
+                <i class="fas fa-phone icon"></i>
+            </div>
+            <div class="grid-item card">
+                <h3>Social Media</h3>
+                <p>Follow us on our social channels!</p>
+                <i class="fas fa-share-alt icon"></i>
+               </div>
+           </div>
+       </div>
+   
+       <div class="footer">
+         <p>&copy; 2023 Innovators Community. All rights reserved.</p>
+      </div>
+   
+   </body>
+   </html>
