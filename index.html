@@ -24,21 +24,23 @@
         #preloader2 h1 {
             font-size: 4em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            animation: fadeIn 2s ease-in-out, typing1 4s steps(30, end) forwards infinite;
             padding-top: 30%;
             margin-bottom: 0;
+            animation: slideIn-left 2s ease-in-out;
         }
         #preloader2 h2 {
             font-size: 3em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            animation: fadeIn 2s ease-in-out, typing1 4s steps(30, end) forwards infinite;
             padding-bottom: 30%;
             margin-top: 0;
+            animation: slideIn-right 4s ease-in-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        #preloader2.hide h1,
+        #preloader2.hide h2 {
+            animation: slideOut 2s ease-in-out forwards;
         }
+
         @keyframes typing1 {
             from {
                 width: 0;
@@ -47,6 +49,37 @@
                 width: 100%;
             }
         }
+        @keyframes slideIn-left {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+         }
+         @keyframes slideIn-right {
+            0% {
+                transform: translateX(200%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+         }
+        @keyframes slideOut {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+            
         .box {
             position: absolute;
             width: 100px;
@@ -204,7 +237,7 @@
             border-radius: 8px;
             border: 0.1px solid #3b6af8;
         }
-        section:hover {
+        #resources:hover, #forum:hover, #blog:hover, #contact:hover {
             box-shadow: 2px 2px 2px 2px #3966eb98;
             transform: scale(1.04)
         }
@@ -225,7 +258,6 @@
             cursor: pointer;
             font-size: 16px;
         }
-
         button:hover {
             background-color: #3b6af8;
             transform: scale(1.1);
@@ -234,8 +266,8 @@
 </head>
 <body>
     <div id="preloader2">
-        <h1>Welcome 2 the AGS </h1> 
-        <h2>An Innovators Community</h2> 
+        <h1 class="welcome-message">Welcome 2 the AGS</h1> 
+        <h2 class="welcome-submessage">An Innovators Community</h2> 
         <div class="bubble bubble1"></div>   
         <div class="box box1"></div>
         <div class="bubble bubble2"></div>
@@ -259,15 +291,17 @@
         </div>
     </header>
     <script>
-        // Show Preloader2 and hide header for 4 sec initially
         window.addEventListener('load', function() {
-            document.getElementById('header').style.display = 'none';   //hide header (navbar) initially
+                document.getElementById('header').style.display = 'none';
 
-            setTimeout( function () {
-            document.getElementById('preloader2').style.display = 'none';    
-            document.getElementById('header').style.display = 'block';
-            }, 4000);
-        });
+                setTimeout(function() {
+                    document.getElementById('preloader2').classList.add('hide');
+                    setTimeout(function() {
+                        document.getElementById('preloader2').style.display = 'none';
+                        document.getElementById('header').style.display = 'block';
+                    }, 2000); // Wait for slideOut animation to complete
+                }, 4000);
+            });
 
         // navbar
         document.getElementById('logo').href = 'index.html';
@@ -302,7 +336,8 @@
     </script>
 
     <main>
-        <section id="resources">
+
+        <section id="resources" style="margin-top: 160px;">
             <h2>Resource Center</h2>
             <p>Explore a variety of articles, videos, and guides designed to help you navigate mental health and disability support.</p>
             <ul>
@@ -402,9 +437,10 @@
         }
         .margin-device.make-center {
             display: flex;
-            justify-content: center;
             margin-top: 20px;
-            color: #4e4d9d;
+            justify-content: center;
+            margin-left: -40px;
+            width: 140%;
         }
         .social-icon {
             width: 40px;
@@ -470,6 +506,7 @@
             padding: 20px;
             text-align: center;
         }
+
         .subscribeForm-note {
             font-size: 2em;
             font-family: monospace, 'Segoe UI', Verdana;
@@ -478,11 +515,8 @@
             color: #333;
             font: bold;
             overflow: hidden;
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
             border-right: 2px solid #1e2225; 
-            animation: typing 4s steps(34, end) forwards infinite, blink-caret 2s step-end infinite; 
+            animation: typing 4s steps(34, end) forwards, blink-caret 2s step-end infinite;
         }
 
         @keyframes typing {
@@ -490,8 +524,9 @@
                 width: 0;
             }
             100% {
-                width: 80%;
+                width: 90%;
             }
+            
         }
         @keyframes blink-caret {
             from, to {
@@ -556,27 +591,27 @@
                                 <a href="#" id="footer-privacy"><span class="footer-link-3">Privacy Policy</span></a>
                                 <a href="#" id="footer-terms"><span class="footer-link-3">Terms &amp; Conditions</span></a>
                                 <a href="#" id="footer-dont-sell"><span class="footer-link-3">Don't Sell My Data</span></a>
-                            <div class="margin-device make-center">
-                                <a href="#" id="footer-yt" target="_blank" aria-label="Subscribe us on Youtube" class="social-icon Youtube">
-                                    <img src="https://cdn.brandfetch.io/idVfYwcuQz/theme/dark/idNobVnGbv.svg?c=1bfwsmEH20zzEfSNTed" alt="Youtube">
-                                </a>
-                                <a href="#" id="footer-linkedin" target="_blank" aria-label="Follow Us on Linkedin" class="social-icon linkedin">
-                                    <img src="https://cdn.brandfetch.io/idJFz6sAsl/id7IxffEDM.svg?c=1bfwsmEH20zzEfSNTed" alt="LinkedIn">
-                                </a>
-                                <a href="#" id="footer-whatsapp" target="_blank" aria-label="Follow Us on WhatsApp-Channel" class="social-icon whatsapp-channel">
-                                    <img src="https://cdn.brandfetch.io/idK4hLUb7M/w/400/h/400/theme/dark/icon.png?c=1bfwsmEH20zzEfSNTed" alt="WhatsApp-Channel">
-                                </a>
-                            </div>
-                                  
+                        <div class="margin-device make-center">
+                            <a href="#" id="footer-yt" target="_blank" title="Subscribe us on Youtube" class="social-icon Youtube">
+                                <img src="Static/social-icons/youtube-fill.svg" alt="Youtube">
+                            </a>
+                            <a href="#" id="footer-linkedin" target="_blank" title="Follow Us on Linkedin" class="social-icon linkedin">
+                                <img src="Static/social-icons/linkedin-fill.svg" alt="LinkedIn">
+                            </a>
+                            <a href="#" id="footer-whatsapp" target="_blank" title="Follow Us on WhatsApp-Channel" class="social-icon whatsapp-channel">
+                                <img src="Static/social-icons/whatsapp-fill.svg" alt="WhatsApp-Channel">
+                            </a>
                         </div>
+                    
+                    </div>
                     </div>
                 </div>
             </div>
         </section>
          <div class="footer-divider"></div>
          <div class="newsletter">
+            <p class="subscribeForm-note">Subscribe to Our Newsletter</p>
             <form id="subscribeForm">
-                <p class="subscribeForm-note">Subscribe to Our Newsletter</p>
                 <input type="email" id="email" placeholder="Enter your email" required>
                 <button type="submit" class="newsletter-btn">Subscribe</button>
                 <p id="message" class="hidden"></p>
@@ -586,6 +621,7 @@
         <p>&copy; 2025 theAGS. All rights reserved.</p>
     </footer>
     <script>
+        
         document.getElementById('subscribeForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
 
