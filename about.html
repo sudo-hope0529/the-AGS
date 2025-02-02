@@ -143,17 +143,6 @@
         </div>
     </header>
     <script>
-        window.addEventListener('load', function() {
-                document.getElementById('header').style.display = 'none';
-
-                setTimeout(function() {
-                    document.getElementById('preloader2').classList.add('hide');
-                    setTimeout(function() {
-                        document.getElementById('preloader2').style.display = 'none';
-                        document.getElementById('header').style.display = 'block';
-                    }, 2000); // Wait for slideOut animation to complete
-                }, 4000);
-            });
 
         // navbar
         document.getElementById('logo').href = 'index.html';
@@ -188,7 +177,7 @@
     </script>
 
     <main>
-        <h1> About coming Soon</h1>
+        <h1 style="text-align: center"> About coming Soon</h1>
     </main>
     <style>
         footer {
