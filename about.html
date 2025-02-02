@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME: theAGS</title>
+    <title>ABOUT: theAGS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #bccaf5f3; 
+            background-color: #bccaf5f3;
+            text-decoration: none;
+            user-select: none;
         }
         .hero {
             display: flex;
@@ -20,7 +22,7 @@
             margin-right: 20px;
         }
         .hero img {
-            height: 100px;
+            height: 100px; /* Set a consistent height */
             width: 100px; 
             object-fit: contain;
             cursor: pointer;
@@ -58,7 +60,6 @@
             padding: 6px 0;
             cursor: pointer;
             height: 16px;
-            text-decoration: none;
         }
         .navItem a {
             display: inline-block;
@@ -97,6 +98,22 @@
             margin-bottom: 10px;
         }
 
+        section {
+            background-color: transparent; 
+            width: 80%;
+            margin: 0 10% 20px 9%;
+            padding: 20px;
+            border-radius: 8px;
+            border: 0.1px solid #3b6af8;
+        }
+
+        h1 {
+            color: #3b6af8d9;
+        }
+        a {
+            text-decoration: none;
+        }
+
         button {
             background-color: #3b6af8d9; /* Button color */
             color: white;
@@ -106,12 +123,10 @@
             cursor: pointer;
             font-size: 16px;
         }
-
         button:hover {
             background-color: #3b6af8;
             transform: scale(1.1);
         }
-
     </style>
 </head>
 <body>
@@ -128,46 +143,58 @@
         </div>
     </header>
     <script>
+        window.addEventListener('load', function() {
+                document.getElementById('header').style.display = 'none';
+
+                setTimeout(function() {
+                    document.getElementById('preloader2').classList.add('hide');
+                    setTimeout(function() {
+                        document.getElementById('preloader2').style.display = 'none';
+                        document.getElementById('header').style.display = 'block';
+                    }, 2000); // Wait for slideOut animation to complete
+                }, 4000);
+            });
+
+        // navbar
         document.getElementById('logo').href = 'index.html';
         document.getElementById('updates').href = 'updates.html';
         document.getElementById('About').href = 'about.html';
         document.getElementById('contacts').href = 'contact.html';
         document.getElementById('Log-In/Sign-Up').href = 'login.html';
-        document.getElementById('apply').href = 'apply-from.html';
+        document.getElementById('apply').href = 'apply-form.html';
 
-        let lastScrollTop = 0;
-        const header = document.getElementById('header');
+    let lastScrollTop = 0;
+    const header = document.getElementById('header');
 
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            let documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrollThreshold = documentHeight / 2;
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        let documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrollThreshold = documentHeight / 2;
 
-            if (scrollTop > scrollThreshold) {
-                if (scrollTop > lastScrollTop) {
-                    // Scroll down
-                    header.style.top = '-120px';
-                } else {
-                    // Scroll up
-                    header.style.top = '0';
-                }
+        if (scrollTop > scrollThreshold) {
+            if (scrollTop > lastScrollTop) {
+                // Scroll down
+                header.style.top = '-120px';
             } else {
+                // Scroll up
                 header.style.top = '0';
             }
+        } else {
+            header.style.top = '0';
+        }
 
-            lastScrollTop = scrollTop;
-        });
+        lastScrollTop = scrollTop;
+    });
     </script>
 
     <main>
-        <h2> Coming Soon.... </h2>
+        <h1> About coming Soon</h1>
     </main>
     <style>
         footer {
             text-align: center;
             padding: 10px 0;
             background: linear-gradient(45deg, #3b6af8d9 12%, #4975fcd9 31%, #3b6af8d9 90%);
-           /*background: #3b6af8d9; /* Dark blue background for footer */
             color: #ffffff;
             position: relative;
             bottom: 0;
@@ -176,7 +203,8 @@
         } 
         .footer-dark {
            background: linear-gradient(45deg, #3b6af821 12%, #3b6af83f 31%, #4975f843 90%);
-            margin: 24px;
+            margin: 21px 10% 20px 8%;
+            border: none;
         }
         .container-8 {
             max-width: 1140px;
@@ -218,9 +246,10 @@
         }
         .margin-device.make-center {
             display: flex;
-            justify-content: center;
             margin-top: 20px;
-            color: #4e4d9d;
+            justify-content: center;
+            margin-left: -40px;
+            width: 140%;
         }
         .social-icon {
             width: 40px;
@@ -255,7 +284,6 @@
             margin-top: 10px;
             color: #aeadeb;
         }
-
         @media (max-width: 768px) {
             .footer-wrapper {
                 flex-direction: column;
@@ -287,6 +315,7 @@
             padding: 20px;
             text-align: center;
         }
+
         .subscribeForm-note {
             font-size: 2em;
             font-family: monospace, 'Segoe UI', Verdana;
@@ -295,11 +324,8 @@
             color: #333;
             font: bold;
             overflow: hidden;
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
             border-right: 2px solid #1e2225; 
-            animation: typing 4s steps(34, end) forwards, blink-caret 2s step-end infinite; 
+            animation: typing 4s steps(34, end) forwards, blink-caret 2s step-end infinite;
         }
 
         @keyframes typing {
@@ -307,8 +333,9 @@
                 width: 0;
             }
             100% {
-                width: 80%;
+                width: 90%;
             }
+            
         }
         @keyframes blink-caret {
             from, to {
@@ -320,7 +347,7 @@
         }
 
 
-        #subscribeForm input[type="email"] {
+        input[type="email"] {
             width: 60%;
             padding: 10px;
             margin: 10px 0;
@@ -328,22 +355,21 @@
             border-radius: 4px;
             transition: border-color 0.3s;
         }
-        #subscribeForm input[type="email"]:focus {
+        input[type="email"]:focus {
             outline: none;
             border: 2px solid;
             border-color: #3b6af8;
             box-shadow: #28292e;
         }
-        #subscribeForm input[type="email"]::placeholder {
+        input[type="email"]::placeholder {
             font-family: 'Courier New', Courier, monospace;
             color: #656464;
             font-style: italic, bold;
             font-size: 1.3em;
         }
-        #subscribe-message {
+        #message {
             margin-top: 9px;
             font-size: 14px;
-            color:aliceblue;
         }
         .newsletter-btn {
             margin-left: 14px;
@@ -358,54 +384,58 @@
                 <div class="footer-wrapper">
                     <div class="footer-content">
                         <div class="footer-block">
-                            <a href="#home" class="footer-brand"><img src="Static/Logo/theAGS-logo3.png" alt="Logo"/></a>
+                            <a href="#" id="footer-logo" class="footer-brand"><img src="Static/Logo/theAGS-logo3.png" alt="Logo"/></a>
                          </div>
                         <div class="footer-block">
-                                <a href="#founders"><span class="footer-link-3">Founders</span></a>
-                                <a href="#partners"><span class="footer-link-3">Partners</span></a>
-                                <a href="#peoples"><span class="footer-link-3">Peoples</span></a>
+                                <a href="#" id="footer-founders"><span class="footer-link-3">Founders</span></a>
+                                <a href="#" id="footer-partners"><span class="footer-link-3">Partners</span></a>
+                                <a href="#" id="footer-peoples"><span class="footer-link-3">Peoples</span></a>
                         </div>
                         <div class="footer-block">
-                                <a href="#"><span class="footer-link-3">About</span></a>
-                                <a href="templates/contact.html"><span class="footer-link-3">Contact Us</span></a>
-                                <a href="#"><span class="footer-link-3">F.A.Q.</span></a>
+                                <a href="#" id="footer-about"><span class="footer-link-3">About</span></a>
+                                <a href="#" id="footer-contact"><span class="footer-link-3">Contact Us</span></a>
+                                <a href="#" id="footer-faq"><span class="footer-link-3">F.A.Q.</span></a>
                         </div>
                         <div class="footer-block">
-                                <a href="#"><span class="footer-link-3">Privacy Policy</span></a>
-                                <a href="#"><span class="footer-link-3">Terms &amp; Conditions</span></a>
-                                <a href="#"><span class="footer-link-3">Don't Sell My Data</span></a>
-                            <div class="margin-device make-center">
-                                <a href="#Youtube" target="_blank" aria-label="Subscribe us on Youtube" class="social-icon Youtube">
-                                    <img src="https://cdn.brandfetch.io/idVfYwcuQz/theme/dark/idNobVnGbv.svg?c=1bfwsmEH20zzEfSNTed" alt="Youtube">
-                                </a>
-                                <a href="#linkedIn" target="_blank" aria-label="Follow Us on Linkedin" class="social-icon linkedin">
-                                    <img src="https://cdn.brandfetch.io/idJFz6sAsl/id7IxffEDM.svg?c=1bfwsmEH20zzEfSNTed" alt="LinkedIn">
-                                </a>
-                            </div>
-                                  
+                                <a href="#" id="footer-privacy"><span class="footer-link-3">Privacy Policy</span></a>
+                                <a href="#" id="footer-terms"><span class="footer-link-3">Terms &amp; Conditions</span></a>
+                                <a href="#" id="footer-dont-sell"><span class="footer-link-3">Don't Sell My Data</span></a>
+                        <div class="margin-device make-center">
+                            <a href="#" id="footer-yt" target="_blank" title="Subscribe us on Youtube" class="social-icon Youtube">
+                                <img src="Static/social-icons/youtube-fill.svg" alt="Youtube">
+                            </a>
+                            <a href="#" id="footer-linkedin" target="_blank" title="Follow Us on Linkedin" class="social-icon linkedin">
+                                <img src="Static/social-icons/linkedin-fill.svg" alt="LinkedIn">
+                            </a>
+                            <a href="#" id="footer-whatsapp" target="_blank" title="Follow Us on WhatsApp-Channel" class="social-icon whatsapp-channel">
+                                <img src="Static/social-icons/whatsapp-fill.svg" alt="WhatsApp-Channel">
+                            </a>
                         </div>
+                    
+                    </div>
                     </div>
                 </div>
             </div>
-            </section>
+        </section>
          <div class="footer-divider"></div>
          <div class="newsletter">
+            <p class="subscribeForm-note">Subscribe to Our Newsletter</p>
             <form id="subscribeForm">
-                <p class="subscribeForm-note">Subscribe to Our Newsletter</p>
-                <input type="email" id="subscribe-email" placeholder="Enter your email" required>
+                <input type="email" id="email" placeholder="Enter your email" required>
                 <button type="submit" class="newsletter-btn">Subscribe</button>
-                <p id="subscribe-message" class="hidden"></p>
+                <p id="message" class="hidden"></p>
             </form>
         </div>        
          <div class="footer-divider"></div>
         <p>&copy; 2025 theAGS. All rights reserved.</p>
     </footer>
     <script>
+        
         document.getElementById('subscribeForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
 
-            const emailInput = document.getElementById('subscribe-email');
-            const message = document.getElementById('subscribe-message');
+            const emailInput = document.getElementById('email');
+            const message = document.getElementById('message');
 
             // Simulate a successful subscription
             if (emailInput.value) {
@@ -417,6 +447,21 @@
                 message.classList.remove('hidden');
             }
         });
+
+        // footer referrence
+        document.getElementById('footer-logo').href = 'index.html';
+        document.getElementById('footer-founders').href = 'founders.html';
+        document.getElementById('footer-partners').href = 'partners.html';
+        document.getElementById('footer-peoples').href = 'peoples.html';
+        document.getElementById('footer-about').href = 'about.html';
+        document.getElementById('footer-contact').href = 'contact.html';
+        document.getElementById('footer-faq').href = 'faq.html';
+        document.getElementById('footer-privacy').href = 'privacy.html';
+        document.getElementById('footer-terms').href = 'terms.html';
+        document.getElementById('footer-dont-sell').href = 'dont-sell.html';
+        document.getElementById('footer-yt').href = 'https://youtube.com/@theags-aspiregrowthsyndicate?si=DKSohSUlgdh3_ib8';
+        document.getElementById('footer-linkedin').href = 'https://www.linkedin.com/company/aspire-growth-syndicate';
+        document.getElementById('footer-whatsapp').href = 'https://whatsapp.com/channel/0029VazvGDiF1YlUnWfCaS1Q';
     </script>
 </body>
 </html>
