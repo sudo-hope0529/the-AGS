@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
     author: "Sarah Chen",
     role: "Full Stack Developer",
     company: "Tech Innovators",
-    image: "/images/testimonials/sarah.jpg",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400&q=80",
     rating: 5,
     tags: ['Mentorship', 'Career Growth', 'Community'],
     socialLinks: {
@@ -36,7 +36,34 @@ const testimonials: Testimonial[] = [
       github: "https://github.com/sarahchen"
     }
   },
-  // Add more testimonials...
+  {
+    id: 2,
+    content: "The collaborative environment at AGS is unmatched. I've learned more here in months than I did in years of self-study.",
+    author: "Michael Rodriguez",
+    role: "Software Engineer",
+    company: "Cloud Solutions Inc",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
+    rating: 5,
+    tags: ['Learning', 'Collaboration', 'Community'],
+    socialLinks: {
+      linkedin: "https://linkedin.com/in/mrodriguez",
+      twitter: "https://twitter.com/mrodriguez"
+    }
+  },
+  {
+    id: 3,
+    content: "AGS provided me with the perfect platform to transition into tech. The support system and resources are incredible.",
+    author: "Emma Thompson",
+    role: "Product Manager",
+    company: "Innovation Labs",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&h=400&q=80",
+    rating: 5,
+    tags: ['Career Change', 'Resources', 'Support'],
+    socialLinks: {
+      linkedin: "https://linkedin.com/in/emmathompson",
+      twitter: "https://twitter.com/emmathompson"
+    }
+  }
 ]
 
 const containerVariants = {
@@ -64,11 +91,11 @@ function Testimonials() {
     threshold: 0.1,
   })
 
-  // Auto-rotate testimonials
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length)
     }, 5000)
+
     return () => clearInterval(timer)
   }, [])
 

@@ -9,17 +9,17 @@ const heroContent = [
   {
     title: "Innovate Together",
     subtitle: "Join a community of tech enthusiasts and innovators",
-    image: "/images/hero/innovation.jpg"
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80"
   },
   {
     title: "Learn & Grow",
     subtitle: "Access exclusive resources and mentorship",
-    image: "/images/hero/learning.jpg"
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2000&q=80"
   },
   {
     title: "Build the Future",
     subtitle: "Participate in cutting-edge projects and hackathons",
-    image: "/images/hero/building.jpg"
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=2000&q=80"
   }
 ]
 
@@ -50,13 +50,16 @@ function HeroSection() {
           exit={{ opacity: 0 }}
           className="absolute inset-0"
         >
-          <Image
-            src={heroContent[currentSlide].image}
-            alt="Hero background"
-            fill
-            className="object-cover"
-            priority
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={heroContent[currentSlide].image}
+              alt="Hero background"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
         </motion.div>
       </AnimatePresence>
@@ -101,7 +104,7 @@ function HeroSection() {
               <Link
                 href="/about"
                 className="rounded-full bg-white/10 backdrop-blur-sm px-8 py-3 text-lg font-semibold 
-                  text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+                  text-white shadow-lg hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
               >
                 Learn More
               </Link>

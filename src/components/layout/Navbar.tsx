@@ -46,11 +46,11 @@ function Navbar() {
               {/* Logo */}
               <Link href="/" className="flex-shrink-0">
                 <Image
-                  src={isScrolled ? "/images/logo-dark.png" : "/images/logo-light.png"}
+                  src={isScrolled ? "/logo-dark.svg" : "/logo-light.svg"}
                   alt="AGS Logo"
                   width={120}
                   height={40}
-                  className="h-8 w-auto"
+                  className="transition-opacity duration-300"
                 />
               </Link>
 
