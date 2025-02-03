@@ -46,7 +46,7 @@ const itemVariants = {
   }
 }
 
-export default function Newsletter() {
+function Newsletter() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [selectedPreferences, setSelectedPreferences] = useState<string[]>([])
@@ -240,4 +240,6 @@ export default function Newsletter() {
       </motion.div>
     </section>
   )
-} 
+}
+
+export default Newsletter

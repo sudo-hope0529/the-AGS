@@ -23,7 +23,7 @@ const heroContent = [
   }
 ]
 
-export default function HeroSection() {
+function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
 
@@ -133,4 +133,6 @@ export default function HeroSection() {
       </div>
     </section>
   )
-} 
+}
+
+export default HeroSection

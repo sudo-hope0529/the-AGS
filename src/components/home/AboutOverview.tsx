@@ -9,7 +9,7 @@ import { Tab } from '@headlessui/react'
 const features = [
   {
     title: 'Our Vision',
-    description: 'To become the world's leading platform for technological innovation and entrepreneurial growth.',
+    description: 'To become the world\'s leading platform for technological innovation and entrepreneurial growth.',
     icon: '🎯',
     stats: { 'Active Members': '500+', 'Countries': '25+', 'Projects': '100+' }
   },
@@ -44,7 +44,7 @@ const itemVariants = {
   }
 }
 
-export default function AboutOverview() {
+function AboutOverview() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -144,4 +144,6 @@ export default function AboutOverview() {
       </div>
     </section>
   )
-} 
+}
+
+export default AboutOverview

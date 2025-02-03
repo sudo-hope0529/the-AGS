@@ -97,23 +97,22 @@ const withPWA = require('next-pwa')({
       }
     }
   ]
-});
+})
 
 const nextConfig = {
-  images: {
-    domains: ['localhost'],
-    unoptimized: true
-  },
-}
-
-module.exports = withPWA({
-  ...nextConfig,
   reactStrictMode: true,
   images: {
-    domains: ['localhost', 'your-production-domain.com'],
+    domains: ['localhost', 'images.unsplash.com'],
+    unoptimized: process.env.NODE_ENV === 'development'
+  },
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false }
+    return config
   },
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   }
-});
+}
+
+module.exports = withPWA(nextConfig)

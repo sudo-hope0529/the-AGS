@@ -18,7 +18,7 @@ const navigation = [
   { name: 'Contact', href: '/contact' },
 ]
 
-export default function Navbar() {
+function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -167,3 +167,5 @@ export default function Navbar() {
     </Disclosure>
   )
 } 
+
+export { Navbar }

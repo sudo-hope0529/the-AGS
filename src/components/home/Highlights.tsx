@@ -68,7 +68,7 @@ const itemVariants = {
   }
 }
 
-export default function Highlights() {
+function Highlights() {
   const [activeHighlight, setActiveHighlight] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const [ref, inView] = useInView({
@@ -207,4 +207,6 @@ export default function Highlights() {
       </motion.div>
     </section>
   )
-} 
+}
+
+export default Highlights

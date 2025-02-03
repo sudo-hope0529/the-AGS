@@ -56,7 +56,7 @@ const cardVariants = {
   }
 }
 
-export default function Testimonials() {
+function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [filter, setFilter] = useState<string>('all')
   const [ref, inView] = useInView({
@@ -226,4 +226,6 @@ export default function Testimonials() {
       </motion.div>
     </section>
   )
-} 
+}
+
+export default Testimonials
