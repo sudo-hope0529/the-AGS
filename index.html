@@ -613,29 +613,34 @@
          <div class="newsletter">
             <p class="subscribeForm-note">Subscribe to Our Newsletter</p>
             <form id="subscribeForm">
-                <input type="email" id="email" placeholder="Enter your email" required>
+                <input type="email" id="subscribe-email" placeholder="Enter your email" required>
                 <button type="submit" class="newsletter-btn">Subscribe</button>
-                <p id="message" class="hidden"></p>
+                <p id="subscribe-message" class="hidden"></p>
             </form>
         </div>        
          <div class="footer-divider"></div>
         <p>&copy; 2025 theAGS. All rights reserved.</p>
     </footer>
     <script>
-        
-        document.getElementById('subscribeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
+        document.getElementById('subscribeForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-            const emailInput = document.getElementById('email');
-            const message = document.getElementById('message');
+            const email = document.getElementById('subscribe-email').value;
+            const message = document.getElementById('subscribe-message');
 
-            // Simulate a successful subscription
-            if (emailInput.value) {
-                message.textContent = `Thank you for subscribing our Newsletter with ${emailInput.value}!`;
+            try {
+                const { data, error } = await supabase
+                    .from('newsletter_subscribers')
+                    .insert([{ email: email }]);
+
+                if (error) throw error;
+
+                message.textContent = `Thank you for subscribing to our Newsletter!`;
                 message.classList.remove('hidden');
-                emailInput.value = ''; // Clear the input field
-            } else {
-                message.textContent = 'Please enter a valid email address.';
+                document.getElementById('subscribe-email').value = '';
+            } catch (error) {
+                console.error('Error:', error);
+                message.textContent = 'Error subscribing. Please try again.';
                 message.classList.remove('hidden');
             }
         });

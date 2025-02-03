@@ -1,1 +1,5 @@
- 
+export { default as HeroSection } from './HeroSection'
+export { default as AboutOverview } from './AboutOverview'
+export { default as Highlights } from './Highlights'
+export { default as Testimonials } from './Testimonials'
+export { default as Newsletter } from './Newsletter' 

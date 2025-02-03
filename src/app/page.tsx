@@ -1,8 +1,10 @@
-import HeroSection from '@/components/home/HeroSection'
-import AboutOverview from '@/components/home/AboutOverview'
-import Highlights from '@/components/home/Highlights'
-import Testimonials from '@/components/home/Testimonials'
-import Newsletter from '@/components/home/Newsletter'
+import { 
+  HeroSection, 
+  AboutOverview, 
+  Highlights, 
+  Testimonials, 
+  Newsletter 
+} from '@/components/home'
 
 export default function Home() {
   return (

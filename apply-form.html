@@ -5,6 +5,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>theAGS: Apply</title>
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+   <script src="static/js/supabase-config.js"></script>
    <style>
       body {
          font-family: Arial, sans-serif;
@@ -221,6 +223,35 @@
             input.style.display = 'block';
         }
     }
+
+    document.getElementById('applicationForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            dob: document.getElementById('dob').value,
+            gender: document.getElementById('gender').value,
+            interest: Array.from(document.getElementById('interest').selectedOptions).map(option => option.value),
+            bio: document.getElementById('bio').value
+        };
+
+        try {
+            const { data, error } = await supabase
+                .from('applications')
+                .insert([formData]);
+
+            if (error) throw error;
+
+            alert('Application submitted successfully!');
+            this.reset();
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error submitting application. Please try again.');
+        }
+    });
    </script>
 </body>
 </html>

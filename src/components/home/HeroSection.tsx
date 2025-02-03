@@ -1,107 +1,136 @@
 'use client'
 
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+
+const heroContent = [
+  {
+    title: "Innovate Together",
+    subtitle: "Join a community of tech enthusiasts and innovators",
+    image: "/images/hero/innovation.jpg"
+  },
+  {
+    title: "Learn & Grow",
+    subtitle: "Access exclusive resources and mentorship",
+    image: "/images/hero/learning.jpg"
+  },
+  {
+    title: "Build the Future",
+    subtitle: "Participate in cutting-edge projects and hackathons",
+    image: "/images/hero/building.jpg"
+  }
+]
 
 export default function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsVisible(false)
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % heroContent.length)
+        setIsVisible(true)
+      }, 500)
+    }, 5000)
+
+    return () => clearInterval(timer)
+  }, [])
+
   return (
-    <div className="relative min-h-screen flex items-center">
-      {/* Background Video/Image */}
-      <div className="absolute inset-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-          poster="/static/images/hero-poster.jpg"
+    <section className="relative h-screen">
+      {/* Background Video/Slider */}
+      <AnimatePresence mode='wait'>
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isVisible ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          className="absolute inset-0"
         >
-          <source src="/static/videos/hero-background.mp4" type="video/mp4" />
-        </video>
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-900/50" />
-      </div>
+          <Image
+            src={heroContent[currentSlide].image}
+            alt="Hero background"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+        </motion.div>
+      </AnimatePresence>
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-48 lg:py-56">
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h1 
-            className="text-4xl font-bold tracking-tight text-white sm:text-6xl"
+      <div className="relative h-full flex items-center justify-center text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
           >
-            Aspire Growth Syndicate
-          </motion.h1>
-          <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-300 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Empowering innovators, fostering growth, and building the future of technology together.
-            Join our community of passionate technologists and entrepreneurs.
-          </motion.p>
-          <motion.div 
-            className="mt-10 flex items-center justify-center gap-x-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Link
-              href="/membership"
-              className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white 
-                shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 
-                focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors duration-200"
-            >
-              Join Us
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm font-semibold leading-6 text-white hover:text-gray-300 
-                transition-colors duration-200 group"
-            >
-              Learn More{' '}
-              <span aria-hidden="true" className="inline-block transition-transform 
-                duration-200 group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-          </motion.div>
-        </motion.div>
-      </div>
+            <AnimatePresence mode='wait'>
+              <motion.h1
+                key={currentSlide}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="text-4xl md:text-6xl font-bold tracking-tight"
+              >
+                {heroContent[currentSlide].title}
+              </motion.h1>
+              <motion.p
+                key={`${currentSlide}-subtitle`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="mt-6 text-xl md:text-2xl max-w-3xl mx-auto"
+              >
+                {heroContent[currentSlide].subtitle}
+              </motion.p>
+            </AnimatePresence>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-      >
-        <motion.div 
-          className="text-white"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
-        </motion.div>
-      </motion.div>
-    </div>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/apply"
+                className="rounded-full bg-blue-600 px-8 py-3 text-lg font-semibold text-white 
+                  shadow-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105"
+              >
+                Join AGS
+              </Link>
+              <Link
+                href="/about"
+                className="rounded-full bg-white/10 backdrop-blur-sm px-8 py-3 text-lg font-semibold 
+                  text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+              >
+                Learn More
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {heroContent.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setIsVisible(false)
+                  setTimeout(() => {
+                    setCurrentSlide(index)
+                    setIsVisible(true)
+                  }, 500)
+                }}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? 'bg-white w-8' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   )
 } 
