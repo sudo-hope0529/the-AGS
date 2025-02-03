@@ -306,24 +306,32 @@
     </section>
 
     <script>
-        document.getElementById('emailForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
+        document.getElementById('emailForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const formMessage = document.getElementById('formMessage');
+            const contactData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                created_at: new Date()
+            };
 
-            // Simulate sending an email
-            if (name && email && message) {
-                formMessage.textContent = `Thank you, ${name}! Your message has been sent.`;
-                formMessage.classList.remove('hidden');
-                formMessage.classList.add('success');
-                document.getElementById('emailForm').reset(); // Clear the form fields
-            } else {
-                formMessage.textContent = 'Please fill out all fields.';
-                formMessage.classList.remove('hidden');
-                formMessage.classList.add('error');
+            try {
+                const { data, error } = await supabase
+                    .from('contact_messages')
+                    .insert([contactData]);
+
+                if (error) throw error;
+
+                document.getElementById('formMessage').textContent = 'Message sent successfully!';
+                document.getElementById('formMessage').classList.remove('hidden');
+                document.getElementById('formMessage').classList.add('success');
+                this.reset();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('formMessage').textContent = 'Error sending message. Please try again.';
+                document.getElementById('formMessage').classList.remove('hidden');
+                document.getElementById('formMessage').classList.add('error');
             }
         });
     </script>
