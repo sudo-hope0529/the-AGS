@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>theAGS: Apply</title>
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+   <script src="static/js/supabase-config.js"></script>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         background-color: #dee5f9b0;
+      }
+      .container {
+         padding: 30px;
+         border-radius: 10px;
+         margin-top: 50px;
+         position: relative;
+      }
+      .container a img {
+         width: 136px;
+         display: block;
+         margin: 0 auto;
+      }
+      h2 {
+         margin-bottom: 30px;
+         font-weight: bold;
+         color: #343a40;
+      }
+      .form-group {
+         margin-bottom: 20px;
+      }
+      .btn-primary {
+         background-color: #3b6af8d9 ;
+         border-color: #007bff;
+         padding: 10px 20px;
+         font-size: 16px;
+      }
+      .btn-primary:hover {
+         background-color: #3b6af8;
+         border-color: #004085;
+      }
+      .form-check-label {
+         margin-left: 5px;
+      }
+      .language-selector {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+      }
+      .form-control-file {
+         position: relative;
+         overflow: hidden;
+         width: 100%;
+         height: 45px;
+         line-height: 45px;
+         background-color: #f8f9fa;
+         border: 1px solid #ced4da;
+         border-radius: 5px;
+         cursor: pointer;
+      }
+      .form-control-file input[type="file"] {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         opacity: 0;
+         cursor: pointer;
+      }
+      .form-control-file::before {
+         content: 'Choose file';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         line-height: 45px;
+         text-align: center;
+         color: #6c757d;
+         pointer-events: none;
+      }
+      .form-control-file input[type="file"]:hover + .form-control-file::before {
+         background-color: #e9ecef;
+      }
+      .form-control-file input[type="file"]:focus + .form-control-file::before {
+         border-color: #80bdff;
+         box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <a id="logo"><img src="Static/Logo/theAGS-logo3.png" alt="theAGS Logo"></a>
+      <form id="applicationForm">
+         <div class="form-group">
+            <label for="name" data-translate="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+         </div>
+         <div class="form-group">
+            <label for="email" data-translate="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+         </div>
+         <div class="form-group">
+            <label for="phone" data-translate="phone">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+         </div>
+         <div class="form-group">
+            <label for="address" data-translate="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Enter your address">
+         </div>
+         <div class="form-group">
+            <label for="dob" data-translate="dob">Date of Birth</label>
+            <input type="date" class="form-control" id="dob">
+         </div>
+         <div class="form-group">
+            <label for="gender" data-translate="gender">Gender</label>
+            <select class="form-control" id="gender">
+               <option data-translate="male">Male</option>
+               <option data-translate="female">Female</option>
+               <option data-translate="other">Other</option>
+            </select>
+         </div>
+         <div class="form-group">
+            <label for="interest" data-translate="interest">Interest</label>
+            <select multiple class="form-control" id="interest">
+               <option>Joining Community</option>
+               <option>Project Support</option>
+               <option>Hackathons</option>
+               <option>Others</option>
+            </select>
+         </div>
+         <div class="form-group">
+            <label for="bio" data-translate="bio">Short Bio</label>
+            <textarea class="form-control" id="bio" rows="3" placeholder="Tell us about yourself"></textarea>
+         </div>
+         <div class="form-group">
+            <label for="resume" data-translate="resume">Upload Resume</label>
+            <div class="mb-3">
+               <input type="file" class="form-control-file" id="resume" aria-label="file example" required onchange="updateFileName()">
+               <div class="invalid-feedback">Example invalid form file feedback</div>
+               <span id="file-name" style="display:none;"></span>
+             </div>
+         </div>
+         <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1" data-translate="check">Check me out</label>
+         </div>
+         <button type="submit" class="btn btn-primary" data-translate="submit">Submit</button>
+      </form>
+   </div>
+
+   <div class="language-selector">
+      <label for="language" data-translate="selectLanguage">Select Language:</label>
+      <select class="form-control" id="language" onchange="translatePage()">
+         <option value="en">English</option>
+         <option value="hi">Hindi</option>
+         <option value="bn">Bengali</option>
+         <option value="te">Telugu</option>
+         <option value="mr">Marathi</option>
+         <option value="ta">Tamil</option>
+         <option value="ur">Urdu</option>
+         <option value="gu">Gujarati</option>
+         <option value="kn">Kannada</option>
+         <option value="ml">Malayalam</option>
+         <option value="pa">Punjabi</option>
+         <option value="fr">French</option>
+         <option value="es">Spanish</option>
+         <option value="de">German</option>
+         <option value="zh">Chinese</option>
+         <option value="ja">Japanese</option>
+         <option value="ru">Russian</option>
+      </select>
+   </div>
+
+   <div id="google_translate_element" style="display:none;"></div>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://translate.googleapis.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+   <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa,fr,es,de,zh,ja,ru',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+
+    function translatePage() {
+        var language = document.getElementById("language").value;
+        if (language) {
+            var frame = document.querySelector('iframe.goog-te-banner-frame');
+            if (frame) {
+                var frameWindow = frame.contentWindow;
+                frameWindow.document.querySelector('.goog-te-combo').value = language;
+                frameWindow.document.querySelector('.goog-te-combo').dispatchEvent(new Event('change'));
+            } else {
+                // If the frame is not available, we can directly change the language
+                var googleTranslateElement = new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa,fr,es,de,zh,ja,ru',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+                googleTranslateElement.setEnabled(true);
+                googleTranslateElement.setLanguage(language);
+            }
+        }
+    }
+
+    function updateFileName() {
+        var input = document.getElementById('resume');
+        var fileName = input.files[0] ? input.files[0].name : '';
+        var fileNameSpan = document.getElementById('file-name');
+        if (fileName) {
+            fileNameSpan.style.display = 'block';
+            fileNameSpan.textContent = fileName;
+            input.style.display = 'none';
+        } else {
+            fileNameSpan.style.display = 'none';
+            input.style.display = 'block';
+        }
+    }
+
+    document.getElementById('applicationForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            dob: document.getElementById('dob').value,
+            gender: document.getElementById('gender').value,
+            interest: Array.from(document.getElementById('interest').selectedOptions).map(option => option.value),
+            bio: document.getElementById('bio').value
+        };
+
+        try {
+            const { data, error } = await supabase
+                .from('applications')
+                .insert([formData]);
+
+            if (error) throw error;
+
+            alert('Application submitted successfully!');
+            this.reset();
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error submitting application. Please try again.');
+        }
+    });
+   </script>
+</body>
+</html>

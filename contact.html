@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME: theAGS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #bccaf5f3; 
+        }
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hero button {
+            margin-right: 20px;
+        }
+        .hero img {
+            height: 100px;
+            width: 100px; 
+            object-fit: contain;
+            cursor: pointer;
+        }
+        .hero nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 100px;
+        }
+        header {
+            background: #4d78f9;
+            color: #ffffff;
+            margin: 2% 2% 0px 2%;
+            text-align: center;
+            width: 96%;
+            position: fixed;
+            border-color:#4553e4;
+            border-radius: 14px;
+            border: 7px 0px;
+            top: 0;
+            left:0;
+            right: 0;
+            min-height: 100px;
+            max-height: 120px;
+            transition: top 0.3s;
+            z-index: 1000;
+        }
+
+        .navItem {
+            display: inline;
+            margin: 6px 15px;
+            list-style: none;
+            padding: 6px 0;
+            cursor: pointer;
+            height: 16px;
+            text-decoration: none;
+        }
+        .navItem a {
+            display: inline-block;
+            position: relative;
+            transition: transform 0.3s ease;
+            color: #c7d1ef;
+        }
+        .navItem a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #3b6af8;
+            transition: width 0.5s ease;
+        }
+        .navItem a:hover {
+            transform: scale(1.04);
+        }
+        .navItem a:hover::after {
+            width: 100%;
+        }
+
+        .apply-button a {
+            margin-top: 4px;
+            color: #a2b7f5;
+        }
+        .apply-button a:hover {
+            color: #c7d1ef;
+         }
+
+        main {
+            padding-bottom: 20px;
+            margin-top: 130px;
+            margin-bottom: 10px;
+        }
+        .main-divider {
+            width: 90%;
+            border-top: 1px solid #3b6af8;
+            margin: 20px auto;
+        }
+        section {
+            background-color: transparent; /* White background for sections */
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        h2 {
+            color: #3b6af8d9;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #3b6af8d9; /* Button color */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #3b6af8;
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="hero">
+            <a href="#" id="logo"><img src="Static/Logo/theAGS-logo3.png" alt="theAGS lOGO"></a>
+            <div class="nav">
+                <div class="navItem"><a id="updates" href="#">Updates</a></div>             
+                <div class="navItem"><a id="About" href="#">About</a></div>
+                <div class="navItem"><a id="contacts" href="#">Contact Us</a></div>
+                <div class="navItem"><a id="Log-In/Sign-Up" href="#">Log-In</a></div>
+                <button class="apply-button"><a id="apply" href="#">Apply</a></button>
+            </div>
+        </div>
+    </header>
+    <script>
+        document.getElementById('logo').href = 'index.html';
+        document.getElementById('updates').href = 'updates.html';
+        document.getElementById('About').href = 'about.html';
+        document.getElementById('contacts').href = 'contact.html';
+        document.getElementById('Log-In/Sign-Up').href = 'login.html';
+        document.getElementById('apply').href = 'apply-form.html';
+
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            let documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrollThreshold = documentHeight / 2;
+
+            if (scrollTop > scrollThreshold) {
+                if (scrollTop > lastScrollTop) {
+                    // Scroll down
+                    header.style.top = '-120px';
+                } else {
+                    // Scroll up
+                    header.style.top = '0';
+                }
+            } else {
+                header.style.top = '0';
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    </script>
+
+    <main>
+
+        <section id="contact" style="margin-left: 6%;">
+            <h2>Contact Us</h2>
+            <p>If you need immediate help, please reach out to a professional or contact us for support.</p>
+            <ul>
+                <li><strong>Email:</strong> support@example.com</li>
+                <li><strong>Phone:</strong> 1-800-555-0199</li>
+                <li><strong>Live Chat:</strong> Available on our website during business hours.</li>
+            </ul>
+            <button onclick="alert('Contact information coming soon!')">Get Help</button>
+        </section>
+        <div class="main-divider"></div>
+        <section id="forum" style="margin-left: 6%;">
+         <h2>Community Forum</h2>
+         <p>Join our community forum to connect with others, share experiences, and find support.</p>
+         <ul>
+             <li><strong>Discussion Boards:</strong> Various topics for discussion.</li>
+             <li><strong>Support Groups:</strong> Find or create support groups.</li>
+             <li><strong>Events:</strong> Information on upcoming events and meetups.</li>
+         </ul>
+         <button onclick="alert('Forum coming soon!')">Join Forum</button>
+     </section>
+    <style>
+        #send-email {
+            padding: 20px;
+            border-radius: 8px;
+            justify-content: center;
+            border: 0.1px solid #3b6af8;
+        }
+
+        #send-email h2 {
+            color: #3b6af8d9;
+        }
+
+        #send-email label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #send-email input, #send-email textarea {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        #send-email input:focus, #send-email textarea:focus {
+            border-color: #3b6af8;
+            outline: none;
+        }
+
+        #send-email button {
+            background-color: #3b6af8d9;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #send-email button:hover {
+            background-color: #3b6af8;
+            transform: scale(1.05);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            box-shadow: 3px 3px 10px #666;
+        }
+
+        #formMessage {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        #formMessage.success {
+            color: green;
+        }
+
+        #formMessage.error {
+            color: red;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* 3D effect for form items */
+        #send-email input[type="text"], #send-email input[type="email"], #send-email textarea {
+            box-shadow: 3px 3px 5px #aaa;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #send-email input[type="text"]:focus, #send-email input[type="email"]:focus, #send-email textarea:focus {
+            box-shadow: 3px 3px 10px #666;
+        }
+
+        /* 3D effect for text */
+        h2, label {
+            text-shadow: 2px 2px 4px #aaaaaa;
+            transition: text-shadow 0.3s ease;
+        }
+
+        h2:hover, label:hover {
+            text-shadow: 2px 2px 8px #666;
+        }
+    </style>
+
+    <div class="main-divider"></div>
+    <section id="send-email" style="width: 80%; margin-left: 6%;">
+        <h2>Send Us a Message</h2>
+        <form id="emailForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <button type="submit">Send Message</button>
+            <p id="formMessage" class="hidden"></p>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const contactData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                created_at: new Date()
+            };
+
+            try {
+                const { data, error } = await supabase
+                    .from('contact_messages')
+                    .insert([contactData]);
+
+                if (error) throw error;
+
+                document.getElementById('formMessage').textContent = 'Message sent successfully!';
+                document.getElementById('formMessage').classList.remove('hidden');
+                document.getElementById('formMessage').classList.add('success');
+                this.reset();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('formMessage').textContent = 'Error sending message. Please try again.';
+                document.getElementById('formMessage').classList.remove('hidden');
+                document.getElementById('formMessage').classList.add('error');
+            }
+        });
+    </script>
+
+    </main>
+    <style>
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: linear-gradient(45deg, #3b6af8d9 12%, #4975fcd9 31%, #3b6af8d9 90%);
+           /*background: #3b6af8d9; /* Dark blue background for footer */
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-family: 'Segoe UI', sans-serif;
+        } 
+        .footer-dark {
+           background: linear-gradient(45deg, #3b6af821 12%, #3b6af83f 31%, #4975f843 90%);
+            margin: 24px;
+        }
+        .container-8 {
+            max-width: 1140px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        .footer-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .footer-brand img {
+            width: 136px;
+            margin-bottom: 20px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .footer-block {
+            flex: 1;
+            min-width: 100px;
+            margin-bottom: 20px;
+        }
+        .footer-link-3 {
+            display: block;
+            color: #94a4f6;
+            margin-bottom: 5px;
+            text-decoration: solid;
+        }
+        .footer-link-3:hover {
+            text-decoration: wavy;
+            color: #b3d8ff;
+            transition: ease-in-out;
+            transform: scale(1.02);
+        }
+        .margin-device.make-center {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            color: #4e4d9d;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgb(86, 109, 242) 12%, rgb(103, 115, 248) 31%, rgb(84, 109, 255) 90%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .social-icon img {
+            width: 26px;
+            height:26px;
+            object-fit: contain;
+        }
+        .social-icon:hover {
+                transform:scale(1.06) ;
+        }
+        .social-icon img:hover {
+            transform: scale(1.06); /* Scale up the logo slightly on hover */
+        }
+        .footer-divider {
+            width: 90%;
+            border-top: 1px solid #bfbef1;
+            margin: 20px auto;
+        }
+        .footer-copyright-center {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+            color: #aeadeb;
+        }
+
+        @media (max-width: 768px) {
+            .footer-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-block {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .margin-device.make-center {
+                justify-content: center;
+            }
+        }
+
+        .divider {
+            width: 90%;
+            height: 1px;
+            margin: 2px 5%;
+            background-color: #bccaf5f3;
+            align-items: center;
+        }
+       .newsletter {
+            background-color: transparent;
+            border-radius: 8px;
+            max-width: 80%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .subscribeForm-note {
+            font-size: 2em;
+            font-family: monospace, 'Segoe UI', Verdana;
+            margin: 10px;
+            padding-left: 14px;
+            color: #333;
+            font: bold;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            border-right: 2px solid #1e2225; 
+            animation: typing 4s steps(34, end) forwards, blink-caret 2s step-end infinite; 
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 80%;
+            }
+        }
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #333436;
+            }
+        }
+
+
+        #subscribeForm input[type="email"] {
+            width: 60%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #484747;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        #subscribeForm input[type="email"]:focus {
+            outline: none;
+            border: 2px solid;
+            border-color: #3b6af8;
+            box-shadow: #28292e;
+        }
+        #subscribeForm input[type="email"]::placeholder {
+            font-family: 'Courier New', Courier, monospace;
+            color: #656464;
+            font-style: italic, bold;
+            font-size: 1.3em;
+        }
+        #subscribe-message {
+            margin-top: 9px;
+            font-size: 14px;
+            color:aliceblue;
+        }
+        .newsletter-btn {
+            margin-left: 14px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <footer>
+        <section class="footer-dark">
+            <div class="container-8">
+                <div class="footer-wrapper">
+                    <div class="footer-content">
+                        <div class="footer-block">
+                            <a href="#home" class="footer-brand"><img src="Static/Logo/theAGS-logo3.png" alt="Logo"/></a>
+                         </div>
+                        <div class="footer-block">
+                                <a href="#founders"><span class="footer-link-3">Founders</span></a>
+                                <a href="#partners"><span class="footer-link-3">Partners</span></a>
+                                <a href="#peoples"><span class="footer-link-3">Peoples</span></a>
+                        </div>
+                        <div class="footer-block">
+                                <a href="#"><span class="footer-link-3">About</span></a>
+                                <a href="templates/contact.html"><span class="footer-link-3">Contact Us</span></a>
+                                <a href="#"><span class="footer-link-3">F.A.Q.</span></a>
+                        </div>
+                        <div class="footer-block">
+                                <a href="#"><span class="footer-link-3">Privacy Policy</span></a>
+                                <a href="#"><span class="footer-link-3">Terms &amp; Conditions</span></a>
+                                <a href="#"><span class="footer-link-3">Don't Sell My Data</span></a>
+                            <div class="margin-device make-center">
+                                <a href="#Youtube" target="_blank" aria-label="Subscribe us on Youtube" class="social-icon Youtube">
+                                    <img src="https://cdn.brandfetch.io/idVfYwcuQz/theme/dark/idNobVnGbv.svg?c=1bfwsmEH20zzEfSNTed" alt="Youtube">
+                                </a>
+                                <a href="#linkedIn" target="_blank" aria-label="Follow Us on Linkedin" class="social-icon linkedin">
+                                    <img src="https://cdn.brandfetch.io/idJFz6sAsl/id7IxffEDM.svg?c=1bfwsmEH20zzEfSNTed" alt="LinkedIn">
+                                </a>
+                            </div>
+                                  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+         <div class="footer-divider"></div>
+         <div class="newsletter">
+            <form id="subscribeForm">
+                <p class="subscribeForm-note">Subscribe to Our Newsletter</p>
+                <input type="email" id="subscribe-email" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+                <p id="subscribe-message" class="hidden"></p>
+            </form>
+        </div>        
+         <div class="footer-divider"></div>
+        <p>&copy; 2025 theAGS. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const emailInput = document.getElementById('subscribe-email');
+            const message = document.getElementById('subscribe-message');
+
+            // Simulate a successful subscription
+            if (emailInput.value) {
+                message.textContent = `Thank you for subscribing our Newsletter with ${emailInput.value}!`;
+                message.classList.remove('hidden');
+                emailInput.value = ''; // Clear the input field
+            } else {
+                message.textContent = 'Please enter a valid email address.';
+                message.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

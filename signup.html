@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Signup - Young Innovators Developers Community</title>
+   <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         background-color: #f4f4f4;
+         margin: 0;
+         padding: 0;
+      }
+      .container {
+         max-width: 500px;
+         margin: 50px auto;
+         padding: 20px;
+         background-color: #fff;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         border-radius: 8px;
+         text-align: center;
+      }
+      .container img {
+         max-width: 100px;
+         margin-bottom: 20px;
+      }
+      h2 {
+         text-align: center;
+         margin-bottom: 20px;
+         color: #333;
+      }
+      .form-group {
+         margin-bottom: 15px;
+         text-align: left;
+      }
+      .form-group label {
+         display: block;
+         margin-bottom: 5px;
+         color: #555;
+      }
+      .form-group input {
+         width: 95.5%;
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+      }
+      .form-group button {
+         width: 100%;
+         padding: 10px;
+         background-color: #28a745;
+         border: none;
+         border-radius: 4px;
+         color: #fff;
+         font-size: 16px;
+         cursor: pointer;
+      }
+      .form-group button:hover {
+         background-color: #218838;
+      }
+      .form-group .login-link {
+         display: block;
+         text-align: center;
+         margin-top: 10px;
+         color: #007bff;
+         text-decoration: none;
+      }
+      .form-group .login-link:hover {
+         text-decoration: underline;
+      }
+      .login-option {
+         text-align: center;
+         margin-top: 20px;
+      }
+      .login-option a {
+         color: #007bff;
+         text-decoration: none;
+      }
+      .login-option a:hover {
+         text-decoration: underline;
+      }
+      .social-login {
+         display: flex;
+         justify-content: space-between;
+         margin-top: 20px;
+      }
+      .social-login button {
+         flex: 1;
+         padding: 10px;
+         margin: 0 5px;
+         border: none;
+         border-radius: 4px;
+         color: #fff;
+         font-size: 16px;
+         cursor: pointer;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+      .social-login button i {
+         margin-right: 8px;
+      }
+      .social-login .google {
+         background-color: #db4437;
+      }
+      .social-login .microsoft {
+         background-color: #0078d4;
+      }
+      .social-login .facebook {
+         background-color: #3b5998;
+      }
+      .social-login .twitter {
+         background-color: #1da1f2;
+      }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <img src="Static/Logo/theAGS-logo3.png" alt="Organization Logo">
+      <h2>Signup</h2>
+      <form action="/signup" method="POST">
+         <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+         </div>
+         <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+         </div>
+         <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+         </div>
+         <div class="form-group">
+            <button type="submit">Signup</button>
+         </div>
+      </form>
+      <div class="social-login">
+         <button class="google"><i class="fab fa-google"></i>Google</button>
+         <button class="microsoft"><i class="fab fa-microsoft"></i>Microsoft</button>
+         <button class="facebook"><i class="fab fa-facebook-f"></i>Facebook</button>
+         <button class="twitter"><i class="fab fa-twitter"></i>Twitter</button>
+      </div>
+      <div class="login-option">
+         <p>Already have an account? <a href="login.html">Login here</a></p>
+      </div>
+   </div>
+</body>
+</html></div>

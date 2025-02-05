@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - AGS Platform</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+            text-align: center;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+        .button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .button:hover {
+            background-color: #2563eb;
+        }
+        .cached-content {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📡</div>
+        <h1>You're Offline</h1>
+        <p>It seems you've lost your internet connection. Don't worry - you can still access previously viewed content!</p>
+        
+        <a href="/" class="button">Try Again</a>
+
+        <div class="cached-content">
+            <h2>Available Offline</h2>
+            <div id="cached-pages">
+                <!-- Dynamically populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check for cached pages and display them
+        if ('caches' in window) {
+            caches.open('pages-cache').then(cache => {
+                cache.keys().then(keys => {
+                    const cachedPages = document.getElementById('cached-pages');
+                    if (keys.length === 0) {
+                        cachedPages.innerHTML = '<p>No content available offline</p>';
+                    } else {
+                        const pagesList = keys
+                            .map(key => `<a href="${key.url}" class="cached-link">${key.url}</a>`)
+                            .join('<br>');
+                        cachedPages.innerHTML = pagesList;
+                    }
+                });
+            });
+        }
+
+        // Periodically check for connection
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

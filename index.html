@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME: theAGS</title>
+    <link rel="icon" type="image/x-icon" size="2em" href="Static/Logo/theAGS-logo.png" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #bccaf5f3; 
+        }
+        /* Preloader*/
+        #preloader2 {
+            height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #preloader2 h1 {
+            font-size: 4em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            padding-top: 30%;
+            margin-bottom: 0;
+            animation: slideIn-left 2s ease-in-out;
+        }
+        #preloader2 h2 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            padding-bottom: 30%;
+            margin-top: 0;
+            animation: slideIn-right 4s ease-in-out;
+        }
+
+        #preloader2.hide h1,
+        #preloader2.hide h2 {
+            animation: slideOut 2s ease-in-out forwards;
+        }
+
+        @keyframes typing1 {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        @keyframes slideIn-left {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+         }
+         @keyframes slideIn-right {
+            0% {
+                transform: translateX(200%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+         }
+        @keyframes slideOut {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+            
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite linear;
+        }
+        .box1 {
+            transform: translateX(-150px) translateY(-150px) translateZ(150px);
+            left: 100px;
+            top: 100px;
+        }
+        .box2 {
+            transform: translateX(150px) translateY(-150px) translateZ(150px);
+            right: 100px;
+            top: 100px;
+        }
+        .box3 {
+            transform: translateX(-150px) translateY(150px) translateZ(150px);
+            right: 100px;
+            bottom: 100px;
+        }
+        .box4 {
+            transform: translateX(150px) translateY(150px) translateZ(150px);
+            left: 100px;
+            bottom: 100px;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.316);
+            animation: bubble 5s infinite;
+            pointer-events: none;
+            bottom: 0;
+        }
+        @keyframes bubble {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+        .bubble1 { left: 10%; width: 50px; height: 50px; animation-duration: 6s; }
+        .bubble2 { left: 30%; width: 70px; height: 70px; animation-duration: 5s; }
+        .bubble3 { left: 50%; width: 40px; height: 40px; animation-duration: 7s; }
+        .bubble4 { left: 70%; width: 60px; height: 60px; animation-duration: 4s; }
+        .bubble5 { left: 90%; width: 80px; height: 80px; animation-duration: 6.5s; }
+
+        /*Preloader ends*/
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hero button {
+            margin-right: 20px;
+        }
+        .hero img {
+            height: 100px; /* Set a consistent height */
+            width: 100px; 
+            object-fit: contain;
+            cursor: pointer;
+        }
+        .hero nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 100px;
+        }
+        header {
+            background: #4d78f9;
+            color: #ffffff;
+            margin: 2% 2% 0px 2%;
+            text-align: center;
+            width: 96%;
+            position: fixed;
+            border-color:#4553e4;
+            border-radius: 14px;
+            border: 7px 0px;
+            top: 0;
+            left:0;
+            right: 0;
+            min-height: 100px;
+            max-height: 120px;
+            transition: top 0.3s;
+            z-index: 1000;
+        }
+
+        .navItem {
+            display: inline;
+            margin: 6px 15px;
+            list-style: none;
+            padding: 6px 0;
+            cursor: pointer;
+            height: 16px;
+        }
+        .navItem a {
+            display: inline-block;
+            position: relative;
+            transition: transform 0.3s ease;
+            color: #c7d1ef;
+        }
+        .navItem a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #3b6af8;
+            transition: width 0.5s ease;
+        }
+        .navItem a:hover {
+            transform: scale(1.04);
+        }
+        .navItem a:hover::after {
+            width: 100%;
+        }
+
+        .apply-button a {
+            margin-top: 4px;
+            color: #a2b7f5;
+        }
+        .apply-button a:hover {
+            color: #c7d1ef;
+         }
+
+        main {
+            padding-bottom: 20px;
+            margin-top: 130px;
+            margin-bottom: 10px;
+        }
+
+        section {
+            background-color: transparent; 
+            width: 80%;
+            margin: 0 10% 20px 9%;
+            padding: 20px;
+            border-radius: 8px;
+            border: 0.1px solid #3b6af8;
+        }
+        #resources:hover, #forum:hover, #blog:hover, #contact:hover {
+            box-shadow: 2px 2px 2px 2px #3966eb98;
+            transform: scale(1.04)
+        }
+
+        h2 {
+            color: #3b6af8d9;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #3b6af8d9; /* Button color */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3b6af8;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader2">
+        <h1 class="welcome-message">Welcome 2 the AGS</h1> 
+        <h2 class="welcome-submessage">An Innovators Community</h2> 
+        <div class="bubble bubble1"></div>   
+        <div class="box box1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="box box2"></div>
+        <div class="bubble bubble3"></div>
+        <div class="box box3"></div>
+        <div class="bubble bubble4"></div>
+        <div class="box box4"></div>
+        <div class="bubble bubble5"></div>
+    </div>
+    <header id="header">
+        <div class="hero">
+            <a href="#" id="logo"><img src="Static/Logo/theAGS-logo3.png" alt="theAGS lOGO"></a>
+            <div class="nav">
+                <div class="navItem"><a id="updates" href="#">Updates</a></div>             
+                <div class="navItem"><a id="About" href="#">About</a></div>
+                <div class="navItem"><a id="contacts" href="#">Contact Us</a></div>
+                <div class="navItem"><a id="Log-In/Sign-Up" href="#">Log-In</a></div>
+                <button class="apply-button"><a id="apply" href="#">Apply</a></button>
+            </div>
+        </div>
+    </header>
+    <script>
+        window.addEventListener('load', function() {
+                document.getElementById('header').style.display = 'none';
+
+                setTimeout(function() {
+                    document.getElementById('preloader2').classList.add('hide');
+                    setTimeout(function() {
+                        document.getElementById('preloader2').style.display = 'none';
+                        document.getElementById('header').style.display = 'block';
+                    }, 2000); // Wait for slideOut animation to complete
+                }, 4000);
+            });
+
+        // navbar
+        document.getElementById('logo').href = 'index.html';
+        document.getElementById('updates').href = 'updates.html';
+        document.getElementById('About').href = 'about.html';
+        document.getElementById('contacts').href = 'contact.html';
+        document.getElementById('Log-In/Sign-Up').href = 'login.html';
+        document.getElementById('apply').href = 'apply-form.html';
+
+    let lastScrollTop = 0;
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        let documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrollThreshold = documentHeight / 2;
+
+        if (scrollTop > scrollThreshold) {
+            if (scrollTop > lastScrollTop) {
+                // Scroll down
+                header.style.top = '-120px';
+            } else {
+                // Scroll up
+                header.style.top = '0';
+            }
+        } else {
+            header.style.top = '0';
+        }
+
+        lastScrollTop = scrollTop;
+    });
+    </script>
+
+    <main>
+
+        <section id="resources" style="margin-top: 160px;">
+            <h2>Resource Center</h2>
+            <p>Explore a variety of articles, videos, and guides designed to help you navigate mental health and disability support.</p>
+            <ul>
+                <li><strong>Articles:</strong> In-depth articles on various topics.</li>
+                <li><strong>Videos:</strong> Informative videos from professionals.</li>
+                <li><strong>Guides:</strong> Step-by-step guides for support.</li>
+            </ul>
+            <button onclick="alert('Resources coming soon!')">View Resources</button>
+        </section>
+
+        <section id="forum">
+            <h2>Community Forum</h2>
+            <p>Join our community forum to connect with others, share experiences, and find support.</p>
+            <ul>
+                <li><strong>Discussion Boards:</strong> Various topics for discussion.</li>
+                <li><strong>Support Groups:</strong> Find or create support groups.</li>
+                <li><strong>Events:</strong> Information on upcoming events and meetups.</li>
+            </ul>
+            <button onclick="alert('Forum coming soon!')">Join Forum</button>
+        </section>
+
+        <section id="blog">
+            <h2>Blog</h2>
+            <p>Stay updated with our latest articles on mental health, wellness, and support strategies.</p>
+            <ul>
+                <li><strong>Latest Posts:</strong> Read our most recent articles.</li>
+                <li><strong>Guest Contributors:</strong> Insights from guest writers.</li>
+                <li><strong>Tips & Tricks:</strong> Practical advice for everyday challenges.</li>
+            </ul>
+            <button onclick="alert('Blog coming soon!')">Read Blog</button>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you need immediate help, please reach out to a professional or contact us for support.</p>
+            <ul>
+                <li><strong>Email:</strong> support@example.com</li>
+                <li><strong>Phone:</strong> 1-800-555-0199</li>
+                <li><strong>Live Chat:</strong> Available on our website during business hours.</li>
+            </ul>
+            <button onclick="alert('Contact information coming soon!')">Get Help</button>
+        </section>
+    </main>
+    <style>
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: linear-gradient(45deg, #3b6af8d9 12%, #4975fcd9 31%, #3b6af8d9 90%);
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-family: 'Segoe UI', sans-serif;
+        } 
+        .footer-dark {
+           background: linear-gradient(45deg, #3b6af821 12%, #3b6af83f 31%, #4975f843 90%);
+            margin: 21px 10% 20px 8%;
+            border: none;
+        }
+        .container-8 {
+            max-width: 1140px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        .footer-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .footer-brand img {
+            width: 136px;
+            margin-bottom: 20px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .footer-block {
+            flex: 1;
+            min-width: 100px;
+            margin-bottom: 20px;
+        }
+        .footer-link-3 {
+            display: block;
+            color: #94a4f6;
+            margin-bottom: 5px;
+            text-decoration: solid;
+        }
+        .footer-link-3:hover {
+            text-decoration: wavy;
+            color: #b3d8ff;
+            transition: ease-in-out;
+            transform: scale(1.02);
+        }
+        .margin-device.make-center {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+            margin-left: -40px;
+            width: 140%;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgb(86, 109, 242) 12%, rgb(103, 115, 248) 31%, rgb(84, 109, 255) 90%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .social-icon img {
+            width: 26px;
+            height:26px;
+            object-fit: contain;
+        }
+        .social-icon:hover {
+                transform:scale(1.06) ;
+        }
+        .social-icon img:hover {
+            transform: scale(1.06); /* Scale up the logo slightly on hover */
+        }
+        .footer-divider {
+            width: 90%;
+            border-top: 1px solid #bfbef1;
+            margin: 20px auto;
+        }
+        .footer-copyright-center {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+            color: #aeadeb;
+        }
+        @media (max-width: 768px) {
+            .footer-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-block {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .margin-device.make-center {
+                justify-content: center;
+            }
+        }
+
+        .divider {
+            width: 90%;
+            height: 1px;
+            margin: 2px 5%;
+            background-color: #bccaf5f3;
+            align-items: center;
+        }
+       .newsletter {
+            background-color: transparent;
+            border-radius: 8px;
+            max-width: 80%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .subscribeForm-note {
+            font-size: 2em;
+            font-family: monospace, 'Segoe UI', Verdana;
+            margin: 10px;
+            padding-left: 14px;
+            color: #333;
+            font: bold;
+            overflow: hidden;
+            border-right: 2px solid #1e2225; 
+            animation: typing 4s steps(34, end) forwards, blink-caret 2s step-end infinite;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 90%;
+            }
+            
+        }
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #333436;
+            }
+        }
+
+
+        input[type="email"] {
+            width: 60%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #484747;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        input[type="email"]:focus {
+            outline: none;
+            border: 2px solid;
+            border-color: #3b6af8;
+            box-shadow: #28292e;
+        }
+        input[type="email"]::placeholder {
+            font-family: 'Courier New', Courier, monospace;
+            color: #656464;
+            font-style: italic, bold;
+            font-size: 1.3em;
+        }
+        #message {
+            margin-top: 9px;
+            font-size: 14px;
+        }
+        .newsletter-btn {
+            margin-left: 14px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <footer>
+        <section class="footer-dark">
+            <div class="container-8">
+                <div class="footer-wrapper">
+                    <div class="footer-content">
+                        <div class="footer-block">
+                            <a href="#" id="footer-logo" class="footer-brand"><img src="Static/Logo/theAGS-logo3.png" alt="Logo"/></a>
+                         </div>
+                        <div class="footer-block">
+                                <a href="#" id="footer-founders"><span class="footer-link-3">Founders</span></a>
+                                <a href="#" id="footer-partners"><span class="footer-link-3">Partners</span></a>
+                                <a href="#" id="footer-peoples"><span class="footer-link-3">Peoples</span></a>
+                        </div>
+                        <div class="footer-block">
+                                <a href="#" id="footer-about"><span class="footer-link-3">About</span></a>
+                                <a href="#" id="footer-contact"><span class="footer-link-3">Contact Us</span></a>
+                                <a href="#" id="footer-faq"><span class="footer-link-3">F.A.Q.</span></a>
+                        </div>
+                        <div class="footer-block">
+                                <a href="#" id="footer-privacy"><span class="footer-link-3">Privacy Policy</span></a>
+                                <a href="#" id="footer-terms"><span class="footer-link-3">Terms &amp; Conditions</span></a>
+                                <a href="#" id="footer-dont-sell"><span class="footer-link-3">Don't Sell My Data</span></a>
+                        <div class="margin-device make-center">
+                            <a href="#" id="footer-yt" target="_blank" title="Subscribe us on Youtube" class="social-icon Youtube">
+                                <img src="Static/social-icons/youtube-fill.svg" alt="Youtube">
+                            </a>
+                            <a href="#" id="footer-linkedin" target="_blank" title="Follow Us on Linkedin" class="social-icon linkedin">
+                                <img src="Static/social-icons/linkedin-fill.svg" alt="LinkedIn">
+                            </a>
+                            <a href="#" id="footer-whatsapp" target="_blank" title="Follow Us on WhatsApp-Channel" class="social-icon whatsapp-channel">
+                                <img src="Static/social-icons/whatsapp-fill.svg" alt="WhatsApp-Channel">
+                            </a>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+         <div class="footer-divider"></div>
+         <div class="newsletter">
+            <p class="subscribeForm-note">Subscribe to Our Newsletter</p>
+            <form id="subscribeForm">
+                <input type="email" id="subscribe-email" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+                <p id="subscribe-message" class="hidden"></p>
+            </form>
+        </div>        
+         <div class="footer-divider"></div>
+        <p>&copy; 2025 theAGS. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('subscribe-email').value;
+            const message = document.getElementById('subscribe-message');
+
+            try {
+                const { data, error } = await supabase
+                    .from('newsletter_subscribers')
+                    .insert([{ email: email }]);
+
+                if (error) throw error;
+
+                message.textContent = `Thank you for subscribing to our Newsletter!`;
+                message.classList.remove('hidden');
+                document.getElementById('subscribe-email').value = '';
+            } catch (error) {
+                console.error('Error:', error);
+                message.textContent = 'Error subscribing. Please try again.';
+                message.classList.remove('hidden');
+            }
+        });
+
+        // footer referrence
+        document.getElementById('footer-logo').href = 'index.html';
+        document.getElementById('footer-founders').href = 'founders.html';
+        document.getElementById('footer-partners').href = 'partners.html';
+        document.getElementById('footer-peoples').href = 'peoples.html';
+        document.getElementById('footer-about').href = 'about.html';
+        document.getElementById('footer-contact').href = 'contact.html';
+        document.getElementById('footer-faq').href = 'faq.html';
+        document.getElementById('footer-privacy').href = 'privacy.html';
+        document.getElementById('footer-terms').href = 'terms.html';
+        document.getElementById('footer-dont-sell').href = 'dont-sell.html';
+        document.getElementById('footer-yt').href = 'https://youtube.com/@theags-aspiregrowthsyndicate?si=DKSohSUlgdh3_ib8';
+        document.getElementById('footer-linkedin').href = 'https://www.linkedin.com/company/aspire-growth-syndicate';
+        document.getElementById('footer-whatsapp').href = 'https://whatsapp.com/channel/0029VazvGDiF1YlUnWfCaS1Q';
+    </script>
+</body>
+</html>
